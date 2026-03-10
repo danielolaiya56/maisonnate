@@ -3,507 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Dorée — Fine Gold Jewelry</title>
-    
-    <!-- Google Fonts -->
+    <title>NexCore — Cloud & DevOps Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="templatemo-maison-style.css">
-    <!--
-
-TemplateMo 611 Maison Doree
-
-https://templatemo.com/tm-611-maison-doree
-
--->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #050810;
+            --dark: #0d1117;
+            --card: #111827;
+            --border: #1f2937;
+            --accent: #00f5a0;
+            --accent2: #00d9f5;
+            --white: #f0f6fc;
+            --muted: #8b949e;
+            --mono: 'Space Mono', monospace;
+            --sans: 'Syne', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--black); color: var(--white); font-family: var(--sans); overflow-x: hidden; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(5,8,16,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: var(--mono); font-size: 18px; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta { background: var(--accent) !important; color: var(--black) !important; padding: 10px 22px; border-radius: 4px; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--accent); border: 1px solid rgba(0,245,160,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; }
+        .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)} }
+        h1 { font-size: clamp(48px,6vw,80px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; }
+        h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { color: var(--muted); font-size: 18px; line-height: 1.7; margin-bottom: 40px; max-width: 480px; }
+        .hero-actions { display: flex; gap: 16px; align-items: center; }
+        .btn-primary { background: var(--accent); color: var(--black); padding: 14px 28px; border-radius: 4px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all 0.2s; display: inline-block; }
+        .btn-primary:hover { background: #00d485; transform: translateY(-1px); }
+        .btn-ghost { color: var(--white); padding: 14px 28px; border: 1px solid var(--border); border-radius: 4px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; display: inline-block; }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+        .terminal { background: var(--dark); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+        .terminal-bar { background: var(--card); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .terminal-dot:nth-child(1){background:#ff5f57} .terminal-dot:nth-child(2){background:#febc2e} .terminal-dot:nth-child(3){background:#28c840}
+        .terminal-title { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: 8px; }
+        .terminal-body { padding: 24px; font-family: var(--mono); font-size: 13px; line-height: 2; }
+        .t-line { display: flex; gap: 12px; }
+        .t-prompt { color: var(--accent); }
+        .t-output { color: var(--muted); padding-left: 24px; }
+        .t-success { color: var(--accent); padding-left: 24px; }
+        .t-info { color: var(--accent2); padding-left: 24px; }
+        .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); animation: blink 1s infinite; vertical-align: middle; }
+        @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+        .glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.08; }
+        .glow-1 { background: var(--accent); top: -200px; left: -200px; }
+        .glow-2 { background: var(--accent2); bottom: -200px; right: -200px; }
+        .stats { padding: 60px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); max-width: 1300px; margin: 0 auto; }
+        .stat-item { padding: 40px; border-right: 1px solid var(--border); text-align: center; }
+        .stat-item:last-child { border-right: none; }
+        .stat-number { font-size: 52px; font-weight: 800; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 8px; }
+        .stat-label { color: var(--muted); font-size: 14px; font-family: var(--mono); }
+        .services { padding: 120px 60px; max-width: 1300px; margin: 0 auto; }
+        .section-tag { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { font-size: clamp(36px,4vw,52px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; }
+        .section-subtitle { color: var(--muted); font-size: 18px; max-width: 500px; line-height: 1.6; margin-bottom: 64px; }
+        .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .service-card { background: var(--dark); padding: 40px; transition: background 0.2s; }
+        .service-card:hover { background: var(--card); }
+        .service-icon { font-size: 32px; margin-bottom: 20px; }
+        .service-name { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .service-desc { color: var(--muted); font-size: 14px; line-height: 1.7; }
+        .service-tag { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: 11px; color: var(--accent); background: rgba(0,245,160,0.08); padding: 4px 10px; border-radius: 4px; }
+        .how { padding: 120px 60px; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .how-inner { max-width: 1300px; margin: 0 auto; }
+        .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; margin-top: 64px; }
+        .step { position: relative; }
+        .step::after { content: '->'; position: absolute; right: -24px; top: 12px; color: var(--border); font-size: 20px; }
+        .step:last-child::after { display: none; }
+        .step-num { font-family: var(--mono); font-size: 48px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 16px; }
+        .step-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .step-desc { color: var(--muted); font-size: 14px; line-height: 1.7; }
+        .tech { padding: 80px 60px; max-width: 1300px; margin: 0 auto; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+        .tech-badge { font-family: var(--mono); font-size: 13px; padding: 8px 18px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); transition: all 0.2s; }
+        .tech-badge:hover { border-color: var(--accent); color: var(--accent); }
+        .contact { padding: 120px 60px; background: var(--dark); border-top: 1px solid var(--border); }
+        .contact-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .contact h2 { font-size: clamp(36px,4vw,52px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .contact-desc { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 40px; }
+        .contact-info { display: flex; flex-direction: column; gap: 16px; }
+        .contact-info-item { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 14px; color: var(--muted); }
+        .contact-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-input, .form-textarea { background: var(--black); border: 1px solid var(--border); color: var(--white); padding: 14px 18px; border-radius: 4px; font-family: var(--sans); font-size: 15px; outline: none; transition: border-color 0.2s; width: 100%; }
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+        .form-textarea { height: 120px; resize: vertical; }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+        .form-submit { background: var(--accent); color: var(--black); border: none; padding: 16px; border-radius: 4px; font-family: var(--sans); font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.2s; }
+        .form-submit:hover { background: #00d485; }
+        footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-copy { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+        .footer-links { display: flex; gap: 32px; list-style: none; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="site-header" id="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="#" class="logo">Maison <span>Dorée</span></a>
-                
-                <nav class="nav-main">
-                    <a href="#collections">Collections</a>
-                    <a href="#story">Our Story</a>
-                    <a href="#craftsmanship">Craftsmanship</a>
-                    <a href="#contact">Visit Us</a>
-                    <a href="#contact" class="nav-cta">Book Appointment</a>
-                </nav>
-                
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Mobile Navigation -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-nav" id="mobileNav">
-        <button class="mobile-nav-close" id="mobileNavClose">×</button>
-        <ul class="mobile-nav-links">
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#story">Our Story</a></li>
-            <li><a href="#craftsmanship">Craftsmanship</a></li>
-            <li><a href="#contact">Visit Us</a></li>
+    <nav>
+        <a href="#" class="logo">Nex<span>Core</span></a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#tech">Tech Stack</a></li>
+            <li><a href="#contact" class="nav-cta">Get Started</a></li>
         </ul>
-        <div class="mobile-nav-cta">
-            <a href="#contact" class="btn-primary">Book Appointment</a>
-        </div>
     </nav>
-    
-    <!-- Hero Section -->
+
     <section class="hero">
-        <div class="hero-content">
-            <p class="text-label hero-tagline">Artisan Gold Jewelry Since 1987</p>
-            <h1 class="heading-display hero-title">
-                Where Gold<br>Becomes <em>Art</em>
-            </h1>
-            <p class="text-body hero-description">
-                Each piece in our collection is handcrafted by master artisans, 
-                transforming the finest gold into wearable works of art that 
-                tell your unique story.
-            </p>
-            <div class="hero-actions">
-                <a href="#collections" class="btn-primary">Explore Collections</a>
-                <a href="#story" class="btn-text">Our Heritage</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <div class="hero-slide active" data-title="Serpentine Collection" data-price="From $2,400">
-                <img src="images/maison-hero-01.jpg" 
-                     alt="Serpentine gold jewelry collection">
-            </div>
-            <div class="hero-slide" data-title="Aurora Pendant" data-price="From $4,850">
-                <img src="images/maison-hero-02.jpg" 
-                     alt="Aurora gold pendant necklace">
-            </div>
-            <div class="hero-slide" data-title="Heritage Rings" data-price="From $3,200">
-                <img src="images/maison-hero-03.jpg" 
-                     alt="Heritage gold ring collection">
-            </div>
-            <div class="hero-image-overlay">
-                <p class="overlay-title" id="heroTitle">Serpentine Collection</p>
-                <p class="overlay-price" id="heroPrice">From $2,400</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Featured Piece -->
-    <section class="featured-piece">
-        <div class="container">
-            <div class="featured-grid">
-                <div class="featured-image-wrapper">
-                    <div class="featured-image">
-                        <img src="images/maison-hero-02.jpg" 
-                             alt="Handcrafted gold necklace">
-                    </div>
-                    <div class="featured-badge">New Arrival</div>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="hero-grid">
+            <div>
+                <div class="hero-tag">Now Hiring DevOps Engineers</div>
+                <h1>Build Faster.<br>Deploy <em>Smarter.</em><br>Scale Freely.</h1>
+                <p class="hero-desc">NexCore delivers enterprise-grade cloud infrastructure, CI/CD pipelines, and DevOps automation so your team ships code with confidence.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Start a Project</a>
+                    <a href="#services" class="btn-ghost">View Services</a>
                 </div>
-                <div class="featured-content">
-                    <p class="text-label featured-label">Featured Piece</p>
-                    <h2 class="heading-display featured-title">
-                        Aurora Pendant
-                    </h2>
-                    <p class="text-body featured-description">
-                        Inspired by the ethereal dance of northern lights, 
-                        the Aurora Pendant captures the fluid movement of light 
-                        through hand-hammered 22-karat gold. Each surface catches 
-                        and reflects light differently, creating a mesmerizing 
-                        display of golden hues.
-                    </p>
-                    <div class="featured-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Material</span>
-                            <span class="detail-value">22K Yellow Gold</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Weight</span>
-                            <span class="detail-value">18.5 grams</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Chain Length</span>
-                            <span class="detail-value">18 inches (adjustable)</span>
-                        </div>
-                    </div>
-                    <p class="featured-price">$4,850</p>
-                    <a href="#contact" class="btn-primary">Inquire About This Piece</a>
+            </div>
+            <div class="terminal">
+                <div class="terminal-bar">
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <span class="terminal-title">nexcore deploy.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span><span>&nbsp;terraform apply</span></div>
+                    <div class="t-output">Initializing provider plugins...</div>
+                    <div class="t-success">+ 12 resources created</div>
+                    <br>
+                    <div class="t-line"><span class="t-prompt">$</span><span>&nbsp;ansible-playbook deploy.yml</span></div>
+                    <div class="t-success">+ prod1 deployed</div>
+                    <div class="t-success">+ prod2 deployed</div>
+                    <div class="t-success">+ all tests passed</div>
+                    <br>
+                    <div class="t-line"><span class="t-prompt">$</span><span>&nbsp;git push origin main</span></div>
+                    <div class="t-info">Jenkins pipeline triggered</div>
+                    <div class="t-success">Deployed in 42s</div>
+                    <br>
+                    <div class="t-line"><span class="t-prompt">$</span><span>&nbsp;<span class="cursor"></span></span></div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Collections -->
-    <section class="collections" id="collections">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-header-left">
-                    <h2 class="heading-display section-title">Our Collections</h2>
-                    <p class="text-body section-subtitle">
-                        Discover pieces crafted for every chapter of your story
-                    </p>
-                </div>
-                <a href="#" class="btn-text">View All Collections</a>
-            </div>
-            
-            <div class="collections-grid">
-                <div class="collection-item">
-                    <div class="collection-image">
-                        <img src="images/maison-hero-03.jpg" 
-                             alt="Bridal jewelry collection">
-                    </div>
-                    <div class="collection-overlay">
-                        <h3 class="collection-name">Bridal</h3>
-                        <p class="collection-count">24 pieces</p>
-                    </div>
-                </div>
-                
-                <div class="collection-item">
-                    <div class="collection-image">
-                        <img src="images/maison-doree-01.jpg" 
-                             alt="Everyday gold jewelry">
-                    </div>
-                    <div class="collection-overlay">
-                        <h3 class="collection-name">Everyday Elegance</h3>
-                        <p class="collection-count">36 pieces</p>
-                    </div>
-                </div>
-                
-                <div class="collection-item">
-                    <div class="collection-image">
-                        <img src="images/maison-doree-02.jpg" 
-                             alt="Statement gold pieces">
-                    </div>
-                    <div class="collection-overlay">
-                        <h3 class="collection-name">Statement</h3>
-                        <p class="collection-count">18 pieces</p>
-                    </div>
-                </div>
-                
-                <div class="collection-item">
-                    <div class="collection-image">
-                        <img src="images/maison-doree-03.jpg" 
-                             alt="Heritage collection">
-                    </div>
-                    <div class="collection-overlay">
-                        <h3 class="collection-name">Heritage</h3>
-                        <p class="collection-count">12 pieces</p>
-                    </div>
-                </div>
-                
-                <div class="collection-item">
-                    <div class="collection-image">
-                        <img src="images/maison-doree-04.jpg" 
-                             alt="Men's gold collection">
-                    </div>
-                    <div class="collection-overlay">
-                        <h3 class="collection-name">Men's Collection</h3>
-                        <p class="collection-count">15 pieces</p>
-                    </div>
-                </div>
+
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">99.9%</div><div class="stat-label">Uptime SLA</div></div>
+            <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Projects Deployed</div></div>
+            <div class="stat-item"><div class="stat-number">40x</div><div class="stat-label">Faster Deployments</div></div>
+            <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Monitoring</div></div>
+        </div>
+    </div>
+
+    <section class="services" id="services">
+        <div class="section-tag">// What We Do</div>
+        <h2 class="section-title">Everything You Need<br>to Ship at Scale</h2>
+        <p class="section-subtitle">From infrastructure setup to full CI/CD automation.</p>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon">☁️</div><div class="service-name">Cloud Infrastructure</div><div class="service-desc">Design and deploy scalable AWS infrastructure using Terraform. VPCs, EC2, S3, RDS — fully automated.</div><span class="service-tag">Terraform · AWS · IaC</span></div>
+            <div class="service-card"><div class="service-icon">⚙️</div><div class="service-name">CI/CD Pipelines</div><div class="service-desc">Build automated deployment pipelines with Jenkins and GitHub webhooks. Push code and watch it go live in seconds.</div><span class="service-tag">Jenkins · GitHub · Webhooks</span></div>
+            <div class="service-card"><div class="service-icon">🤖</div><div class="service-name">Configuration Management</div><div class="service-desc">Manage hundreds of servers effortlessly with Ansible playbooks. Consistent, repeatable, automated.</div><span class="service-tag">Ansible · Linux · Automation</span></div>
+            <div class="service-card"><div class="service-icon">🐳</div><div class="service-name">Container Orchestration</div><div class="service-desc">Deploy applications with Docker and Kubernetes on EKS. Auto-scaling, zero-downtime deployments.</div><span class="service-tag">Docker · Kubernetes · EKS</span></div>
+            <div class="service-card"><div class="service-icon">⚡</div><div class="service-name">Serverless Architecture</div><div class="service-desc">Build event-driven apps with Lambda, API Gateway, and DynamoDB. Pay only for what you use.</div><span class="service-tag">Lambda · API Gateway · DynamoDB</span></div>
+            <div class="service-card"><div class="service-icon">📊</div><div class="service-name">Monitoring & Alerting</div><div class="service-desc">Full observability with CloudWatch dashboards and real-time alerts before your users notice a problem.</div><span class="service-tag">CloudWatch · Grafana · Alerts</span></div>
+        </div>
+    </section>
+
+    <section class="how" id="how">
+        <div class="how-inner">
+            <div class="section-tag">// Our Process</div>
+            <h2 class="section-title">From Zero to Production<br>in 4 Steps</h2>
+            <div class="steps">
+                <div class="step"><div class="step-num">01</div><div class="step-title">Assess</div><div class="step-desc">We audit your infrastructure, identify bottlenecks and define a clear path forward.</div></div>
+                <div class="step"><div class="step-num">02</div><div class="step-title">Design</div><div class="step-desc">We architect a cloud-native solution tailored to your team size and budget.</div></div>
+                <div class="step"><div class="step-num">03</div><div class="step-title">Build</div><div class="step-desc">We implement everything as code — infrastructure, pipelines, automation.</div></div>
+                <div class="step"><div class="step-num">04</div><div class="step-title">Launch</div><div class="step-desc">We deploy, monitor, and hand over with full documentation and training.</div></div>
             </div>
         </div>
     </section>
-    
-    <!-- Our Story -->
-    <section class="story" id="story">
-        <div class="container">
-            <div class="story-grid">
-                <div class="story-content">
-                    <p class="text-label story-label">Our Heritage</p>
-                    <h2 class="heading-display story-title">
-                        Three Generations of Golden Mastery
-                    </h2>
-                    <p class="text-body story-text">
-                        Founded in 1987 by master goldsmith Henri Beaumont, 
-                        Maison Dorée has remained a family atelier dedicated to 
-                        the art of fine gold jewelry. What began in a small 
-                        workshop in the heart of the jewelry district has 
-                        blossomed into a celebrated house known for impeccable 
-                        craftsmanship.
-                    </p>
-                    <p class="text-body story-text">
-                        Today, our third-generation artisans continue the 
-                        tradition, blending time-honored techniques with 
-                        contemporary design sensibilities. Every piece that 
-                        leaves our workshop carries the weight of this legacy.
-                    </p>
-                    <div class="story-signature">
-                        <p class="signature-name">Isabelle Beaumont</p>
-                        <p class="signature-title">Creative Director</p>
-                    </div>
-                </div>
-                <div class="story-images">
-                    <div class="story-image">
-                        <img src="images/maison-doree-05.jpg" 
-                             alt="Goldsmith at work">
-                    </div>
-                    <div class="story-image">
-                        <img src="images/maison-doree-06.jpg" 
-                             alt="Jewelry crafting detail">
-                    </div>
-                </div>
-            </div>
+
+    <section class="tech" id="tech">
+        <div class="section-tag">// Tech Stack</div>
+        <h2 class="section-title">Tools We Master</h2>
+        <div class="tech-list">
+            <span class="tech-badge">AWS</span><span class="tech-badge">Terraform</span><span class="tech-badge">Ansible</span><span class="tech-badge">Jenkins</span><span class="tech-badge">Docker</span><span class="tech-badge">Kubernetes</span><span class="tech-badge">GitHub Actions</span><span class="tech-badge">Python</span><span class="tech-badge">Bash</span><span class="tech-badge">Lambda</span><span class="tech-badge">API Gateway</span><span class="tech-badge">DynamoDB</span><span class="tech-badge">S3</span><span class="tech-badge">EC2</span><span class="tech-badge">CloudWatch</span><span class="tech-badge">IAM</span><span class="tech-badge">VPC</span><span class="tech-badge">EKS</span><span class="tech-badge">MySQL</span><span class="tech-badge">Flask</span><span class="tech-badge">Nginx</span><span class="tech-badge">Apache</span>
         </div>
     </section>
-    
-    <!-- Craftsmanship -->
-    <section class="craftsmanship" id="craftsmanship">
-        <div class="container">
-            <div class="craft-grid">
-                <div class="craft-content">
-                    <p class="text-label">The Art of Creation</p>
-                    <h2 class="heading-display craft-title">
-                        Crafted by Hand, Treasured Forever
-                    </h2>
-                    <p class="text-body craft-text">
-                        Each Maison Dorée piece undergoes a meticulous journey 
-                        from concept to completion. Our artisans employ 
-                        traditional goldsmithing techniques passed down through 
-                        generations, ensuring every curve, texture, and finish 
-                        meets our exacting standards.
-                    </p>
-                    <ul class="craft-list text-body">
-                        <li>Hand-selected materials from ethical sources</li>
-                        <li>Traditional lost-wax casting and hand-forging</li>
-                        <li>Multiple quality inspections at every stage</li>
-                        <li>Personalized finishing and custom sizing</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Commission a Custom Piece</a>
-                </div>
-                <div class="craft-image-wrapper">
-                    <div class="craft-image">
-                        <img src="images/maison-doree-07.jpg" 
-                             alt="Jewelry craftsmanship workshop">
-                    </div>
-                    <div class="craft-stats">
-                        <div class="stat-item">
-                            <p class="stat-number">37</p>
-                            <p class="stat-label">Years of Excellence</p>
-                        </div>
-                        <div class="stat-item">
-                            <p class="stat-number">12</p>
-                            <p class="stat-label">Master Artisans</p>
-                        </div>
-                        <div class="stat-item">
-                            <p class="stat-number">8K+</p>
-                            <p class="stat-label">Pieces Created</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="testimonials-header">
-                <p class="text-label">Client Stories</p>
-                <h2 class="heading-display testimonials-title">Treasured by Many</h2>
-                <p class="text-body testimonials-subtitle">What our clients say about their Maison Dorée experience</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-text">
-                        The attention to detail is extraordinary. My wedding set from Maison Dorée isn't just jewelry — it's a work of art that I'll cherish forever.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="images/avatar-01.jpg" alt="Catherine W.">
-                        </div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">Catherine W.</p>
-                            <p class="testimonial-detail">Bridal Collection</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-text">
-                        Working with the design team to create a custom anniversary gift was seamless. They understood my vision and exceeded expectations.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="images/avatar-02.jpg" alt="Michael T.">
-                        </div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">Michael T.</p>
-                            <p class="testimonial-detail">Custom Design</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="testimonial-text">
-                        Three generations of my family have now worn pieces from Maison Dorée. The quality is unmatched and each piece tells our story.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="images/avatar-03.jpg" alt="Eleanor M.">
-                        </div>
-                        <div class="testimonial-info">
-                            <p class="testimonial-name">Eleanor M.</p>
-                            <p class="testimonial-detail">Heritage Collection</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact -->
+
     <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-content">
-                    <p class="text-label">Visit Our Atelier</p>
-                    <h2 class="heading-display contact-title">
-                        Experience Maison Dorée
-                    </h2>
-                    <p class="text-body contact-text">
-                        We invite you to visit our atelier for a personal 
-                        consultation. Discover our collections in an intimate 
-                        setting and work with our designers to create something 
-                        truly unique.
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <p class="contact-item-label">Address</p>
-                            <p class="contact-item-value">
-                                742 Fifth Avenue, Suite 1200<br>
-                                New York, NY 10019
-                            </p>
-                        </div>
-                        <div class="contact-item">
-                            <p class="contact-item-label">Hours</p>
-                            <p class="contact-item-value">
-                                Tuesday – Saturday, 10:00 AM to 06:00 PM<br>
-                                Sunday – Monday, By Appointment
-                            </p>
-                        </div>
-                        <div class="contact-item">
-                            <p class="contact-item-label">Contact</p>
-                            <p class="contact-item-value">
-                                <a href="tel:+12125551234">+1 (212) 555-1234</a><br>
-                                <a href="mailto:hello@maisondoree.com">hello@maisondoree.com</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-wrapper">
-                    <h3 class="form-title">Request an Appointment</h3>
-                    <form id="appointmentForm">
-                        <div class="form-group">
-                            <label class="form-label" for="name">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="message">Tell Us About Your Visit</label>
-                            <textarea id="message" name="message" class="form-textarea" 
-                                placeholder="Interested in a specific collection? Planning a custom piece?"></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">Request Appointment</button>
-                    </form>
+        <div class="contact-inner">
+            <div>
+                <div class="section-tag">// Get In Touch</div>
+                <h2>Ready to Modernize<br>Your Infrastructure?</h2>
+                <p class="contact-desc">Whether starting from scratch or migrating legacy systems, we build solutions that scale with your ambitions.</p>
+                <div class="contact-info">
+                    <div class="contact-info-item"><span>📍</span><span>Remote-first · Worldwide</span></div>
+                    <div class="contact-info-item"><span>📧</span><span>hello@nexcore.io</span></div>
+                    <div class="contact-info-item"><span>⏱</span><span>Response within 24 hours</span></div>
                 </div>
             </div>
+            <form class="contact-form">
+                <input type="text" class="form-input" placeholder="Your Name" required>
+                <input type="email" class="form-input" placeholder="Email Address" required>
+                <input type="text" class="form-input" placeholder="Company Name">
+                <textarea class="form-textarea" placeholder="Tell us about your project..."></textarea>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
         </div>
     </section>
-    
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Column 1: Brand & Contact -->
-                <div class="footer-brand">
-                    <p class="footer-logo">Maison <span>Dorée</span></p>
-                    <p class="footer-tagline">
-                        Handcrafted gold jewelry of exceptional quality and timeless elegance. Family-owned atelier since 1987.
-                    </p>
-                    <div class="footer-contact-info">
-                        <p>742 Fifth Avenue, Suite 1200</p>
-                        <p>New York, NY 10019</p>
-                        <p><a href="tel:+12125551234">+1 (212) 555-1234</a></p>
-                        <p><a href="mailto:hello@maisondoree.com">hello@maisondoree.com</a></p>
-                    </div>
-                </div>
-                
-                <!-- Column 2: Quick Links -->
-                <div class="footer-column">
-                    <h4 class="footer-column-title">Collections</h4>
-                    <ul class="footer-links">
-                        <li><a href="#collections">All Collections</a></li>
-                        <li><a href="#">Bridal</a></li>
-                        <li><a href="#">Everyday Elegance</a></li>
-                        <li><a href="#">Statement Pieces</a></li>
-                        <li><a href="#">Men's Collection</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Column 3: Company -->
-                <div class="footer-column">
-                    <h4 class="footer-column-title">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#story">Our Story</a></li>
-                        <li><a href="#craftsmanship">Craftsmanship</a></li>
-                        <li><a href="#contact">Visit Us</a></li>
-                        <li><a href="#">Custom Design</a></li>
-                        <li><a href="#">Care Guide</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Column 4: About This Website -->
-                <div class="footer-column footer-about">
-                    <h4 class="footer-column-title">About This Website</h4>
-                    <p>
-                        This is a free HTML CSS template designed for gold jewelry boutiques and luxury brands.
-                    </p>
-                    <p>
-                        You may download and use this template for your website. Please support us by keeping the credit link to <a href="https://templatemo.com" target="_blank">TemplateMo</a>.
-                    </p>
-                    <p>
-                        Images: <a href="https://unsplash.com" target="_blank">Unsplash</a>
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 Maison Dorée. Design: <a href="https://templatemo.com" target="_blank" rel="nofollow">TemplateMo</a></p>
-                <div class="footer-social">
-                    <a href="#">Instagram</a>
-                    <a href="#">Pinterest</a>
-                    <a href="#">Facebook</a>
-                </div>
-            </div>
-        </div>
+
+    <footer>
+        <p class="footer-copy">2026 NexCore. Built with cloud and code.</p>
+        <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how">Process</a></li>
+            <li><a href="#tech">Stack</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </footer>
-    <script src="templatemo-maison-doree.js"></script>
 </body>
-</html><!-- webhook test -->
-<!-- deploy test -->
+</html>
